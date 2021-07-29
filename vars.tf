@@ -3,8 +3,7 @@ variable "dbname" {
   description   = "Nombre de la base de datos"
 }
 variable "dbroll" {
-  type          = list
-  default       = ["db_accessadmin", "db_backupoperator", "db_datareader", "db_datawriter", "db_ddladmin", "db_denydatareader", "db_denydatawriter", "db_owner", "db_securityadmin"]
+  type          = string
   description   = "Permisos"
 }
 variable "sqlpassword" {
