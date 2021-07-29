@@ -16,20 +16,20 @@ terraform {
 }
 
 provider "mssql" {
-  password  = "2014Charango$$"
-  url       = "localhost"
-  user_name = "sa"
+  password  = "${var.sqlpassword}"
+  url       = "${var.sqlhost}"
+  user_name = "${var.sqluser}"
 }
 
 resource "mssql_database" "server" {
-    name          = "SARASA2"
+    name          = "${var.dbname}"
     recovery_mode = "FULL"
     collation     = "SQL_Latin1_General_CP1_CI_AS"
 }
 
 resource "mssql_login" "server" {
-  name      = "pepito"
-  password  = "pistolero"
+  name      = "${var.mmsqldbloginname}"
+  password  = "${var.mmsqldbloginpass}"
 }
 
 resource "mssql_user" "server" {
@@ -40,13 +40,5 @@ resource "mssql_user" "server" {
 resource "mssql_rolemapping" "server" {
   user = mssql_user.server.name
   database = mssql_user.server.database
-  role = "db_owner"
-  # role = "db_securityadmin"
-  # role = "db_accessadmin"
-  # role = "db_backupoperator"
-  # role = "db_ddladmin"
-  # role = "db_datareader"
-  # role = "db_datawriter"
-  # role = "db_denydatareader"
-  # role = "db_denydatawriter"
+  role = "${var.dbroll}"
 }
