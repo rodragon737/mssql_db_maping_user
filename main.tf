@@ -41,5 +41,12 @@ resource "mssql_rolemapping" "server" {
   user = mssql_user.server.name
   database = mssql_user.server.database
   role = "db_owner"
+  # role = "db_securityadmin"
+  # role = "db_accessadmin"
+  # role = "db_backupoperator"
+  # role = "db_ddladmin"
   # role = "db_datareader"
+  # role = "db_datawriter"
+  # role = "db_denydatareader"
+  # role = "db_denydatawriter"
 }
